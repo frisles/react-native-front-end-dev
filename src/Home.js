@@ -153,13 +153,13 @@ const Home = ({navigation}) => {
                     <View style={styles.offersFlex}>
                         <Text style={styles.offersTitle}>Offers</Text>
                         <View style={styles.offersContainer}>
-                            <Pressable onPress={() => navigation.navigate('')}  style={styles.offersWrapper}>
+                            <Pressable onPress={() => navigation.navigate('giftsHome')}  style={styles.offersWrapper}>
                                 <Image style={styles.offerPic} source={require('../src/assets/images/offer-1.png')}/>
                             </Pressable>
                             <Pressable onPress={() => navigation.navigate('')}  style={styles.offersWrapper}>
                                 <Image style={styles.offerPic} source={require('../src/assets/images/offer-2.png')}/>
                             </Pressable>
-                            <Pressable onPress={() => navigation.navigate('')}  style={styles.offersWrapper}>
+                            <Pressable onPress={() => navigation.navigate('generateHome')}  style={styles.offersWrapper}>
                                 <Image style={styles.offerPic} source={require('../src/assets/images/offer-3.png')}/>
                             </Pressable>
                             <Pressable onPress={() => navigation.navigate('')}  style={styles.offersWrapper}>

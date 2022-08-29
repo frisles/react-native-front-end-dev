@@ -31,6 +31,10 @@ import InviteFriends from './src/register/InviteFriends';
 import Interests from './src/register/Interests';
 import Groups from './src/register/Groups';
 import Home from './src/Home';
+import GiftsHome from './src/offers/gift-home';
+import GiftsDetails from './src/offers/gift-details';
+import GenerateHome from './src/offers/generate-home';
+import GenerateComponent from './src/offers/generate-component';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,17 +75,21 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="mobileNumber">
-    <Stack.Screen name="mobileNumber" component={MobileNumber} />
-    <Stack.Screen name="verifyAccount" component={VerifyAccount} />
-    <Stack.Screen name="agree" component={Agree} />
-    <Stack.Screen name="details" component={Details} />
-    <Stack.Screen name="uploadPicture" component={UploadPicture} />
-    <Stack.Screen name="location" component={Location} />
-    <Stack.Screen name="inviteFriends" component={InviteFriends} />
-    <Stack.Screen name="interests" component={Interests} />
-    <Stack.Screen name="groups" component={Groups} />
-    <Stack.Screen name="home" component={HomeStackScreen} />
-  </Stack.Navigator>
+        <Stack.Screen name="mobileNumber" component={MobileNumber} />
+        <Stack.Screen name="verifyAccount" component={VerifyAccount} />
+        <Stack.Screen name="agree" component={Agree} />
+        <Stack.Screen name="details" component={Details} />
+        <Stack.Screen name="uploadPicture" component={UploadPicture} />
+        <Stack.Screen name="location" component={Location} />
+        <Stack.Screen name="inviteFriends" component={InviteFriends} />
+        <Stack.Screen name="interests" component={Interests} />
+        <Stack.Screen name="groups" component={Groups} />
+        <Stack.Screen name="home" component={HomeStackScreen} />
+        <Stack.Screen name="giftsHome" component={GiftsHome} />
+        <Stack.Screen name="giftDetails" component={GiftsDetails} />
+        <Stack.Screen name="generateHome" component={GenerateHome} />
+        <Stack.Screen name="generateComponent" component={GenerateComponent} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
