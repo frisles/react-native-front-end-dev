@@ -201,7 +201,7 @@ const SlambookHome = ({navigation}) => {
                             <Pressable onPress={() => navigation.navigate('slambookRequest')}  style={styles.iconWrapper}>
                                 <Image style={styles.arrowIcon} source={require('../assets/images/menu-icon.png')}/>
                             </Pressable>    
-                            <Pressable onPress={() => navigation.navigate('notification')}  style={styles.notifyWrapper}>
+                            <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.notifyWrapper}>
                                 <Image style={styles.notifyIcon} source={require('../assets/images/notify-icon.png')}/>
                             </Pressable>    
                             <Pressable onPress={() => navigation.navigate('slambookRequest')}  style={styles.iconWrapper}>

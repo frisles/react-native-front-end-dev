@@ -31,7 +31,7 @@ const Home = ({navigation}) => {
                             <Pressable onPress={() => navigation.navigate('')}  style={styles.menuWrapper}>
                                 <Image style={styles.menuIcon} source={require('../src/assets/images/menu-icon.png')}/>
                             </Pressable>
-                            <Pressable onPress={() => navigation.navigate('')}  style={styles.notifyWrapper}>
+                            <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.notifyWrapper}>
                                 <Image style={styles.notifyIcon} source={require('../src/assets/images/notify-icon.png')}/>
                             </Pressable>
                             <Pressable onPress={() => navigation.navigate('slambookHome')}  style={styles.badgeWrapper}>

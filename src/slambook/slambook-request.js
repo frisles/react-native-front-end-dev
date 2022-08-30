@@ -79,7 +79,7 @@ const SlambookRequest = ({navigation}) => {
                             <Pressable onPress={() => navigation.navigate('home')}  style={styles.iconWrapper}>
                                 <Image style={styles.arrowIcon} source={require('../assets/images/left-arrow.png')}/>
                             </Pressable>    
-                            <Pressable onPress={() => navigation.navigate('notification')}  style={styles.notifyWrapper}>
+                            <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.notifyWrapper}>
                                 <Image style={styles.notifyIcon} source={require('../assets/images/notify-icon.png')}/>
                             </Pressable>    
                             <Pressable onPress={() => navigation.navigate('giftsHome')}  style={styles.iconWrapper}>

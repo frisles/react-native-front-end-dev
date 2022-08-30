@@ -51,7 +51,7 @@ const GenerateHome = ({navigation}) => {
                         <Image style={styles.arrowIcon} source={require('../assets/images/left-arrow.png')}/>
                     </Pressable>
                     <Text style={styles.headTitle}>Huddle Play</Text>
-                    <Pressable onPress={() => navigation.navigate('notification')}  style={styles.iconWrapper}>
+                    <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.iconWrapper}>
                         <Image style={styles.notifyIcon} source={require('../assets/images/notify-icon.png')}/>
                     </Pressable>
                 </View>
