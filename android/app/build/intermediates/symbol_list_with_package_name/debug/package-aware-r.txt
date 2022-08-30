@@ -1509,7 +1509,9 @@ drawable src_assets_images_picture3
 drawable src_assets_images_profilebg
 drawable src_assets_images_scratchbg
 drawable src_assets_images_scratchbg1
+drawable src_assets_images_searchblack
 drawable src_assets_images_searchicon
+drawable src_assets_images_slambookbg
 drawable src_assets_images_smalltick
 drawable test_custom_background
 drawable test_level_drawable

@@ -20,7 +20,8 @@ const { width, height } = Dimensions.get('window');
 const Home = ({navigation}) => {
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
                 <View style={styles.container}>
                     <ImageBackground
                         source={require('../src/assets/images/home-top-bg.png')}
@@ -33,7 +34,7 @@ const Home = ({navigation}) => {
                             <Pressable onPress={() => navigation.navigate('')}  style={styles.notifyWrapper}>
                                 <Image style={styles.notifyIcon} source={require('../src/assets/images/notify-icon.png')}/>
                             </Pressable>
-                            <Pressable onPress={() => navigation.navigate('')}  style={styles.badgeWrapper}>
+                            <Pressable onPress={() => navigation.navigate('slambookHome')}  style={styles.badgeWrapper}>
                                 <Image style={styles.badgeIcon} source={require('../src/assets/images/badge.png')}/>
                             </Pressable>
                         </View>    

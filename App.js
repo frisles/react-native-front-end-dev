@@ -35,6 +35,9 @@ import GiftsHome from './src/offers/gift-home';
 import GiftsDetails from './src/offers/gift-details';
 import GenerateHome from './src/offers/generate-home';
 import GenerateComponent from './src/offers/generate-component';
+import SlambookRequest from './src/slambook/slambook-request';
+import SlambookForm from './src/slambook/slambook-form';
+import SlambookHome from './src/slambook/slambook-home';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -89,6 +92,9 @@ const App = () => {
         <Stack.Screen name="giftDetails" component={GiftsDetails} />
         <Stack.Screen name="generateHome" component={GenerateHome} />
         <Stack.Screen name="generateComponent" component={GenerateComponent} />
+        <Stack.Screen name="slambookRequest" component={SlambookRequest} />
+        <Stack.Screen name="slambookForm" component={SlambookForm} />
+        <Stack.Screen name="slambookHome" component={SlambookHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
