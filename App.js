@@ -43,6 +43,9 @@ import ScheduledHome from './src/scheduled-activity/scheduled-home';
 import CreateActivity from './src/scheduled-activity/create-activity';
 import ScheduledActivity from './src/scheduled-activity/scheduled-activity';
 import ActivityDetails from './src/scheduled-activity/activity-details';
+import ProfileHome from './src/profile/profile-home';
+import ProfileEdit from './src/profile/profile-edit';
+import ConnectHome from './src/connect/connect-home';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,7 +67,7 @@ function HomeStackScreen() {
         />
         <Tab.Screen 
           name="Connect" 
-          component={Home} 
+          component={ConnectHome} 
           options={{
             tabBarIcon: ({size,focused,color}) => {
               return <Image
@@ -105,6 +108,9 @@ const App = () => {
         <Stack.Screen name="createActivity" component={CreateActivity} />
         <Stack.Screen name="scheduledActivity" component={ScheduledActivity} />
         <Stack.Screen name="activityDetails" component={ActivityDetails} />
+        <Stack.Screen name="profileHome" component={ProfileHome} />
+        <Stack.Screen name="profileEdit" component={ProfileEdit} />
+        <Stack.Screen name="connectHome" component={ConnectHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );

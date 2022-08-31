@@ -28,7 +28,7 @@ const Home = ({navigation}) => {
                         resizeMode="cover"
                         style={styles.topContainer}>
                         <View style={styles.menuContainer}>
-                            <Pressable onPress={() => navigation.navigate('')}  style={styles.menuWrapper}>
+                            <Pressable onPress={() => navigation.navigate('mobileNumber')}  style={styles.menuWrapper}>
                                 <Image style={styles.menuIcon} source={require('../src/assets/images/menu-icon.png')}/>
                             </Pressable>
                             <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.notifyWrapper}>
@@ -64,7 +64,10 @@ const Home = ({navigation}) => {
                             source={require('../src/assets/images/home-profile.png')}
                             resizeMode="cover"
                             style={styles.profileImageContainer}>
+                                <Pressable onPress={() => navigation.navigate('profileHome')}>
                                 <Image style={styles.profilePic} source={require('../src/assets/images/picture-1.png')}/>
+
+                                </Pressable>
                         </ImageBackground>
                     </View>
                     <View style={styles.groupContainer}>

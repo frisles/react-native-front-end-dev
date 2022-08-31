@@ -13,8 +13,12 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const SearchComponent = ({searchPhrase, setSearchPhrase, placeHolder}) => {
+const SearchComponent = ({searchPhrase, setSearchPhrase, placeHolder, filter}) => {
     // console.log('searchPhrase', searchPhrase, 'setSearchPhrase', setSearchPhrase)
+    const getFilter = () => {
+
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -26,6 +30,12 @@ const SearchComponent = ({searchPhrase, setSearchPhrase, placeHolder}) => {
                 placeholder={placeHolder}
                 value={searchPhrase}
                 onChangeText={setSearchPhrase}/>
+                {
+                    filter && 
+                    <Pressable onPress={getFilter}  style={styles.filterIconWrapper}>
+                        <Image style={styles.filterIcon} source={require('../assets/images/filter.png')} />
+                    </Pressable>      
+                }
         </View>
     )
 }
@@ -37,7 +47,9 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        borderColor: '#B8B8D2',
+        borderWidth: 0.5
     },
     imageContainer:{
         width: 50,
@@ -47,6 +59,17 @@ const styles = StyleSheet.create({
     },
     inputContainer:{
         width: '85%'
+    },
+    filterIconWrapper:{
+        width: 50,
+        height: 50,
+        position: 'relative',
+        right: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    filterIcon:{
+
     }
 })
 
