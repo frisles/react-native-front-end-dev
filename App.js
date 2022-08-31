@@ -39,6 +39,10 @@ import SlambookRequest from './src/slambook/slambook-request';
 import SlambookForm from './src/slambook/slambook-form';
 import SlambookHome from './src/slambook/slambook-home';
 import Notifications from './src/notifications';
+import ScheduledHome from './src/scheduled-activity/scheduled-home';
+import CreateActivity from './src/scheduled-activity/create-activity';
+import ScheduledActivity from './src/scheduled-activity/scheduled-activity';
+import ActivityDetails from './src/scheduled-activity/activity-details';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -97,6 +101,10 @@ const App = () => {
         <Stack.Screen name="slambookForm" component={SlambookForm} />
         <Stack.Screen name="slambookHome" component={SlambookHome} />
         <Stack.Screen name="notifications" component={Notifications} />
+        <Stack.Screen name="scheduledHome" component={ScheduledHome} />
+        <Stack.Screen name="createActivity" component={CreateActivity} />
+        <Stack.Screen name="scheduledActivity" component={ScheduledActivity} />
+        <Stack.Screen name="activityDetails" component={ActivityDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

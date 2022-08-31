@@ -20,6 +20,10 @@
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_closeicon.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_closeicon.png"
+    },
+    {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_notifyicon.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_notifyicon.png"
     },
@@ -136,6 +140,10 @@
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_gift1.png"
     },
     {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_bigiconunselect.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_bigiconunselect.png"
+    },
+    {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_node_modules_reactnativecountrypickermodal_lib_assets_images_closeios.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnativecountrypickermodal_lib_assets_images_closeios.png"
     },
@@ -210,6 +218,10 @@
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_bigicondone.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_bigicondone.png"
     },
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_scratchbg1.png.flat",

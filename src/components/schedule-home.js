@@ -17,10 +17,12 @@ import {
     VirtualizedList
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
-const ScheduleHome = ({navigation}) => {
+const ScheduleHome = () => {
+    const navigation = useNavigation(); 
     const [index, setIndex] = useState(0);
     const calender = ['Day', 'Week', 'Month', 'Year'];
     const SECTIONS = [
@@ -159,8 +161,15 @@ const ScheduleHome = ({navigation}) => {
             <View style={styles.tabContent} key={data.id}>
                 <View style={{backgroundColor: '#8F99EB', width: 2, height: 44}}></View>
                 <View style={styles.tabContentWrapper}>
-                    <Text style={styles.tabTitle}>{data.title}</Text>
-                    <Text style={styles.tabLabel}>{data.time}</Text>
+                    <View style={styles.topContentWrapper}>
+                        <View style={styles.topTitleWrapper}>
+                            <Text style={styles.tabTitle}>{data.title}</Text>
+                            <Text style={styles.tabLabel}>{data.time}</Text>
+                        </View>
+                        <Pressable onPress={() => navigation.navigate('scheduledHome')} style={styles.tabViewWrapper}>
+                            <Image source={require('../assets/images/dot-menu.png')} />
+                        </Pressable>
+                    </View>
                     <View style={styles.tabLocationWrapper}>
                         <Image style={styles.icon} source={require('../assets/images/location-icon.png')}/>
                         <Text style={styles.tabLocation}>{data.location}</Text>
@@ -313,7 +322,19 @@ const styles = StyleSheet.create({
     },
     tabContentWrapper:{
         flexDirection: 'column',
-        marginLeft: 20
+        marginLeft: 20,
+        width: '100%'
+    },
+    topContentWrapper:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    topTitleWrapper:{
+        flexDirection: 'column'
+    },
+    tabViewWrapper:{
+        width: 50,
+        height: 50,
     },
     tabTitle:{
         fontFamily: 'Inter',
@@ -336,7 +357,7 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         height: 20,
         marginTop: 20,
-        minWidth: 90,
+        maxWidth: 110,
         alignItems: 'center'
     },
     tabLocation:{

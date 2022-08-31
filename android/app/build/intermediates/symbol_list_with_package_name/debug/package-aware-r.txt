@@ -1473,6 +1473,9 @@ drawable redbox_top_border_background
 drawable rn_edit_text_material
 drawable src_assets_images_addcard
 drawable src_assets_images_badge
+drawable src_assets_images_bigicondone
+drawable src_assets_images_bigiconunselect
+drawable src_assets_images_closeicon
 drawable src_assets_images_connectmenu
 drawable src_assets_images_contactpic
 drawable src_assets_images_dotmenu
