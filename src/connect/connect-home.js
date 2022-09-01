@@ -11,15 +11,23 @@ import {
     Dimensions,
     ImageBackground,
     Image,
+    Button,
     TextInput
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchComponent from '../components/search';
+import Modal from "react-native-modal";
 
 const { width, height } = Dimensions.get('window');
 
 const ConnectHome = ({navigation}) => {
     const [searchPhrase, setSearchPhrase] = useState("");
+    const [isModalVisible, setModalVisible] = useState(false);
+    
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
     const data = [
         {
             'profilePic': require('../assets/images/picture-2.png'),
@@ -67,10 +75,51 @@ const ConnectHome = ({navigation}) => {
             'content': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'coverPic': require('../assets/images/cover-pic.png')
         },
+    ];
+
+    const modalList = [
+        {
+            "icon": require('../assets/images/group-icon-1.png'),
+            "title": "Invite to Group",
+            "label": "inviteToGroup"
+        },
+        {
+            "icon": require('../assets/images/group-icon-2.png'),
+            "title": "Hide"
+        },
+        {
+            "icon": require('../assets/images/group-icon-3.png'),
+            "title": "Send Message"
+        },
+        {
+            "icon": require('../assets/images/group-icon-4.png'),
+            "title": "Send Link"
+        },
+        {
+            "icon": require('../assets/images/group-icon-5.png'),
+            "title": "Follow"
+        },
+        {
+            "icon": require('../assets/images/group-icon-6.png'),
+            "title": "Shortlist"
+        },
+        {
+            "icon": require('../assets/images/group-icon-7.png'),
+            "title": "Block"
+        },
+        {
+            "icon": require('../assets/images/group-icon-8.png'),
+            "title": "Report"
+        },
+        {
+            "icon": require('../assets/images/group-icon-9.png'),
+            "title": "Create Group"
+        },
     ]
+
     return (
-        
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 <ImageBackground
                     source={require('../assets/images/offer-bg-top.png')}
@@ -102,7 +151,7 @@ const ConnectHome = ({navigation}) => {
                                         <Text style={styles.like}>{e?.like}</Text>
                                         <Text style={styles.comment}>{e?.comment}</Text>
                                     </View>
-                                    <Pressable onPress={() => navigation.navigate('')} style={styles.iconWrapper}>
+                                    <Pressable onPress={toggleModal} style={styles.iconWrapper}>
                                         <Image style={styles.menuIcon} source={require('../assets/images/dot-menu.png')}/>
                                     </Pressable>
                                 </View>
@@ -126,6 +175,21 @@ const ConnectHome = ({navigation}) => {
                     }
                 </View>
             </View>
+            <Modal isVisible={isModalVisible} style={styles.modalContainer}>
+                <View style={styles.modalWrapper}>
+                    {
+                        modalList.length > 0 && modalList.map((e,i) => {
+                            return(
+                                <Pressable key={i} onPress={() => navigation.navigate(e?.label)} style={styles.modalList}>
+                                    <Image style={styles.groupIcon} source={e?.icon}/>
+                                    <Text style={styles.groupTitle}>{e.title}</Text>
+                                </Pressable>
+                            )
+                        })
+                    }
+                    <Button title="Hide modal" onPress={toggleModal} />
+                </View>
+            </Modal>
         </ScrollView>
     )
 }
@@ -266,7 +330,8 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     coverContainer:{
-        flexDirection: 'column'
+        flexDirection: 'column',
+        marginBottom: 20
     },
     coverContent:{
         fontFamily: 'Inter',
@@ -280,6 +345,37 @@ const styles = StyleSheet.create({
         height: 145,
         borderRadius: 12,
         marginVertical: 12
+    },
+    modalContainer:{
+        alignItems: 'center',
+    },
+    modalWrapper:{
+        width: 206,
+        backgroundColor: '#FFF',
+        alignItems: 'center',
+        flexDirection: 'column',
+        paddingVertical: 20,
+        borderRadius: 14,
+    },
+    modalList:{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        width: '80%',
+        marginVertical: 10
+    },
+    groupIcon:{
+        width: 22,
+        height: 22
+    },
+    groupTitle:{
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: '400',
+        color: '#000',
+        lineHeight: 22,
+        textAlign: 'left',
+        paddingLeft: 14
     }
 })
 

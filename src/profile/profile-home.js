@@ -20,7 +20,7 @@ const ProfileHome = ({navigation}) => {
             </View>
             
             <Pressable
-                onPress={() => navigation.navigate('details')}
+                onPress={() => navigation.navigate('profileEdit')}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>

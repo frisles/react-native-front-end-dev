@@ -46,6 +46,7 @@ import ActivityDetails from './src/scheduled-activity/activity-details';
 import ProfileHome from './src/profile/profile-home';
 import ProfileEdit from './src/profile/profile-edit';
 import ConnectHome from './src/connect/connect-home';
+import InviteToGroup from './src/connect/invite-to-group';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,7 +83,6 @@ function HomeStackScreen() {
 }
 
 const App = () => {
-  
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="mobileNumber">
@@ -110,7 +110,8 @@ const App = () => {
         <Stack.Screen name="activityDetails" component={ActivityDetails} />
         <Stack.Screen name="profileHome" component={ProfileHome} />
         <Stack.Screen name="profileEdit" component={ProfileEdit} />
-        <Stack.Screen name="connectHome" component={ConnectHome} />
+        <Stack.Screen name="connectHome" component={HomeStackScreen} />
+        <Stack.Screen name="inviteToGroup" component={InviteToGroup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
