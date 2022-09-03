@@ -1496,6 +1496,9 @@ drawable src_assets_images_giftdetailbg
 drawable src_assets_images_groupbg1
 drawable src_assets_images_groupbg2
 drawable src_assets_images_groupbg3
+drawable src_assets_images_groupbluebg
+drawable src_assets_images_groupbrownbg
+drawable src_assets_images_groupgreenbg
 drawable src_assets_images_groupicon1
 drawable src_assets_images_groupicon2
 drawable src_assets_images_groupicon3
@@ -1505,6 +1508,7 @@ drawable src_assets_images_groupicon6
 drawable src_assets_images_groupicon7
 drawable src_assets_images_groupicon8
 drawable src_assets_images_groupicon9
+drawable src_assets_images_grouppinkbg
 drawable src_assets_images_homegroupbg
 drawable src_assets_images_homemenu
 drawable src_assets_images_homeprofile
@@ -1536,6 +1540,7 @@ drawable src_assets_images_searchblack
 drawable src_assets_images_searchicon
 drawable src_assets_images_slambookbg
 drawable src_assets_images_smalltick
+drawable src_assets_images_vipicon
 drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark

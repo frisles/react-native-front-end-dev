@@ -60,6 +60,10 @@
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_gift2.png"
     },
     {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_groupbrownbg.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_groupbrownbg.png"
+    },
+    {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_editicon.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_editicon.png"
     },
@@ -200,6 +204,10 @@
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnative_libraries_newappscreen_components_logo.png"
     },
     {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_vipicon.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_vipicon.png"
+    },
+    {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_searchicon.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_searchicon.png"
     },
@@ -222,6 +230,10 @@
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_groupicon1.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_groupicon1.png"
+    },
+    {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_groupgreenbg.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_groupgreenbg.png"
     },
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
@@ -272,6 +284,10 @@
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_groupbluebg.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_groupbluebg.png"
+    },
+    {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_groupicon4.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_groupicon4.png"
     },
@@ -294,6 +310,10 @@
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_gift3.png.flat",
         "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_gift3.png"
+    },
+    {
+        "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_src_assets_images_grouppinkbg.png.flat",
+        "source": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\src\\main\\res\\drawable-mdpi\\src_assets_images_grouppinkbg.png"
     },
     {
         "merged": "E:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
