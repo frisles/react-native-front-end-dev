@@ -1,18 +1,62 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
     StyleSheet,
     Text,
     Pressable,
-    View
+    View,
+    TextInput,
+    Button
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PhoneInput from 'react-native-phone-number-input';
+import auth from '@react-native-firebase/auth';
+
 
 const MobileNumber = ({navigation}) => {
+    const [confirm, setConfirm] = useState(null);
     const [phoneNumber,
         setphoneNumber] = useState('');
+        
+        const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
     const phoneInput = useRef(null);
 
+    const onAuthStateChanged = (user) => {
+        console.log('user', user)
+        setUser(user);
+        if (initializing) setInitializing(false);
+      }
+
+    useEffect(() => {
+        // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        // console.log('subscriber', subscriber)
+        // return subscriber; // unsubscribe on unmount
+    }, []);
+
+    const signInWithPhoneNumber = async(phoneNumber) => {
+        console.log('signInWithPhoneNumber.', phoneNumber);
+        const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+        if(confirmation){
+            setConfirm(confirmation);
+            navigation.navigate('verifyAccount', {
+                screen: 'verifyAccount',
+                number: phoneNumber,
+                getConfirm: confirmation
+            })
+        }
+        console.log('confirmation.', confirmation);
+    }
+
+    //   console.log('confirm ===>', confirm)
+    //   if (!confirm) {
+    //     return (
+    //       <Button
+    //         title="Phone Number Sign In"
+    //         onPress={() => signInWithPhoneNumber('+919952022301')}
+    //       />
+    //     );
+    //   }
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
@@ -20,6 +64,10 @@ const MobileNumber = ({navigation}) => {
                 <Text style={styles.subContent}>Please enter your valid phone number. We will
                     send you 6-digit code to verify account.</Text>
             </View>
+            {/* <TextInput value={phoneNumber} onChangeText={text => setphoneNumber(text)} style={{color: '2C2C2C', fontSize: 14, borderColor: '#000', borderWidth: 1, width: '80%'}} />
+      <Button title="sign in" onPress={() => signInWithPhoneNumber(phoneNumber)} /> */}
+            {/* <TextInput value={code} onChangeText={text => setCode(text)} style={{color: '2C2C2C', fontSize: 14, borderColor: '#000', borderWidth: 1, width: '80%'}} />
+            <Button title="Confirm Code" onPress={confirmCode} /> */}
             <PhoneInput
                 ref={phoneInput}
                 defaultValue={phoneNumber}
@@ -27,13 +75,16 @@ const MobileNumber = ({navigation}) => {
                 layout="first"
                 withShadow
                 autoFocus
+                onChangeText={(text) => {
+                    setphoneNumber(text);
+                  }}
                 containerStyle={styles.phoneNumberView}
                 textContainerStyle={styles.textInput}
                 onChangeFormattedText={text => {
                 setphoneNumber(text);
             }}/>
             <Pressable
-                onPress={() => navigation.navigate('verifyAccount')}
+                onPress={() => signInWithPhoneNumber(phoneNumber)}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
@@ -77,9 +128,18 @@ const styles = StyleSheet.create({
     },
     phoneNumberView: {
         marginTop: 60,
+        marginBottom: 20,
         width: '80%',
-        height: 50,
+        padding: 0,
+        height: 70,
         backgroundColor: 'white'
+    },
+    textInput:{
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#2C2C2C',
+        lineHeight: 24
     },
     buttonContainer: {
         width: '80%',

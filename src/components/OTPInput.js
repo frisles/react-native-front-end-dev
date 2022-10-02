@@ -9,13 +9,19 @@ import {
 } from 'react-native';
 import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from 'react-native-confirmation-code-field';
 
-const OTPInput = ({maximumLength}) => {
-    const [value,
-        setValue] = useState('');
+const OTPInput = ({maximumLength, onChange}) => {
+    const [value, setValue] = useState('');
+    const [code, setCode] = useState('');
     const ref = useBlurOnFulfill({value, cellCount: maximumLength});
     const [props,
         getCellOnLayoutHandler] = useClearByFocusCell({value, setValue});
-
+    
+        useEffect(() =>{
+            // console.log('OTPInput Component data', data)
+            // confirmCode(data)
+            onChange(value)
+        }, [value])
+        console.log('OTPInput value', value)
     return (
         <CodeField
             ref={ref}

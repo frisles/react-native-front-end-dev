@@ -3,15 +3,44 @@ import {StyleSheet, Text, Pressable, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import OTPInput from '../components/OTPInput';
 
-const VerifyAccount = ({navigation}) => {
+const VerifyAccount = ({route, navigation}) => {
+    // if(route !== undefined && route.params !== undefined){
+        const { number, getConfirm } = route?.params;
+    // }
+    const [term, setTerm] = useState("");
+    const [code, setCode] = useState("");
 
+    // console.log("getConfirm", navigation?.getParam('number'))
+    // console.log(number, "getConfirm", getConfirm)
+    
+    const sendCode = async() => {
+        
+      }
+    const onChangeText = (value) => {
+        console.log('value ==>', value)
+        setCode(value)
+    } 
+      console.log('term', term)
+
+      const confirmCode = async() => {
+        console.log('confirmCode value ==>', code)
+        try {
+            await getConfirm.confirm(code);
+            console.log('success.');
+        } catch (error) {
+            console.log('Invalid code.');
+        }
+        }
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Verify Account</Text>
-                <Text style={styles.subContent}>Enter 6-digit code we have sent to +91 98765 43210</Text>
+                <Text style={styles.subContent}>Enter 6-digit code we have sent to {number}</Text>
                 <View style={styles.OTPWrapper}>
-                    <OTPInput maximumLength={6}/>
+                    <OTPInput 
+                        maximumLength={6} 
+                        onChange={onChangeText}
+                    />
                 </View>
                 <View style={styles.timerWrapper}>
                     <Text style={styles.timerText}>02:22:01</Text>
@@ -22,7 +51,7 @@ const VerifyAccount = ({navigation}) => {
                 </View>
             </View>
             <Pressable
-                onPress={() => navigation.navigate('agree')}
+                onPress={confirmCode}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
