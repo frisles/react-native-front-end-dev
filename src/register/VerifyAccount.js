@@ -5,7 +5,7 @@ import OTPInput from '../components/OTPInput';
 
 const VerifyAccount = ({route, navigation}) => {
     // if(route !== undefined && route.params !== undefined){
-        const { number, getConfirm } = route?.params;
+        const { number, getConfirm, uniqueID } = route?.params;
     // }
     const [term, setTerm] = useState("");
     const [code, setCode] = useState("");
@@ -30,7 +30,8 @@ const VerifyAccount = ({route, navigation}) => {
             console.log('success.');
             setModalVisible(false);
             navigation.navigate('agree',{
-                phoneNumber: number
+                phoneNumber: number,
+                uniqueID: uniqueID
             });
         } catch (error) {
             console.log('Invalid code.');

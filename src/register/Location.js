@@ -19,7 +19,7 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 const Location = ({route, navigation}) => {
-    const { phoneNumber, name, dob, gender, occupation, profilePic, coverPic } = route?.params;
+    const { uniqueID, phoneNumber, name, dob, gender, occupation, profilePic, coverPic } = route?.params;
     // console.log(phoneNumber, name, dob, gender, occupation, profilePic, coverPic)
     const [latitude,
         setLatitude] = useState(0);
@@ -27,6 +27,7 @@ const Location = ({route, navigation}) => {
         setLongitude] = useState(0);
     const triggerRegister = ()     => {
         let payload = {
+            "mobile": uniqueID,
             "phone": phoneNumber,
             "name": name,
             "dob": dob,
@@ -35,7 +36,8 @@ const Location = ({route, navigation}) => {
             "profilePicture": profilePic,
             "coverPicture": coverPic,
             "latitude": latitude.toString(),
-            "longitude": longitude.toString()
+            "longitude": longitude.toString(),
+            "interest": ["books"]
         }
         console.log("payload", payload)
         axios.post('http://18.212.184.28:3000/api/login', payload).then((response) => {

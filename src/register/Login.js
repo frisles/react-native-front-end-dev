@@ -18,56 +18,55 @@ import axios from 'axios';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-export async function request_READ_PHONE_STATE() {
- 
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE);
-        console.log('granted', granted, "PermissionsAndroid.RESULTS.GRANTED", PermissionsAndroid.RESULTS.GRANTED)
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-   
-        Alert.alert("Permission Granted.");
-      }
-      else {
-   
-        Alert.alert("Permission Not Granted");
-   
-      }
-    } catch (err) {
-      console.warn(err)
-    }
-  }
+
 const LoginComponent = ({navigation}) => {
     const [confirmLogin, setConfirmLogin] = useState(false);
-    const get_IMEI_Number=()=>{
- 
-        const IMEI = require('react-native-imei');
-     
-        var IMEI_2 = IMEI.getImei();
-        console.log("IMEI", IMEI_2)
-     
-        
-      }
+    const [uniqueID, setUniqueID] = useState(false);
+    
     const phoneNumberValidate = () => {
-        // requestPermissions();
+        requestPermissions();
         if(PermissionsAndroid.RESULTS.GRANTED){
             console.log("sdsds", PermissionsAndroid.RESULTS.GRANTED);
+            DeviceInfo.getUniqueId().then((uniqueId) => {
+                console.log('uniqueId',uniqueId);
+                setUniqueID(uniqueId)
                 
-            DeviceInfo.getPhoneNumber().then((phoneNumber) => {
-                Alert.alert('My phone munber', phoneNumber)
-                console.log("login DeviceInfo phoneNumber", phoneNumber);
                 axios.get('http://18.212.184.28:3000/api/login').then((response) => {
-                    // console.log("response", response.data);
-                    response.data.filter(e => { 
-                        if(e.phone === phoneNumber){
-                            setConfirmLogin(false);
-                            navigation.navigate('home')
-                        }
-                        else{
-                            setConfirmLogin(true)
-                        }
-                    })
-                  });
+                    let data = response.data.length;
+                    console.log("data", data);
+                    if(data){
+                        response.data.filter(e => { 
+                            console.log("e.mobile", e.mobile);
+                           if(e.mobile === uniqueId){
+                               setConfirmLogin(false);
+                               navigation.navigate('home')
+                           }
+                           else{
+                               setConfirmLogin(true)
+                           }
+                       })
+                    }
+                    else{
+                        setConfirmLogin(true)
+                    }
+                  })
+            })
+            
+            DeviceInfo.getPhoneNumber().then((phoneNumber) => {
+                // Alert.alert('My phone munber', phoneNumber)
+                console.log("login DeviceInfo phoneNumber", phoneNumber);
+                // axios.get('http://18.212.184.28:3000/api/login').then((response) => {
+                //     // console.log("response", response.data);
+                //     response.data.filter(e => { 
+                //         if(e.phone === phoneNumber){
+                //             setConfirmLogin(false);
+                //             navigation.navigate('home')
+                //         }
+                //         else{
+                //             setConfirmLogin(true)
+                //         }
+                //     })
+                //   });
             });
         }
     }
@@ -78,22 +77,15 @@ const LoginComponent = ({navigation}) => {
 
     useEffect(() => {
         console.log("Login Component");
-        (async () => {
-            const users = await request_READ_PHONE_STATE();
-            console.log("users", users)
-          })();
         phoneNumberValidate();
     }, []);
+    console.log("Login confirmLogin", confirmLogin);
 
     return (
         <ImageBackground source={require('../assets/images/login.png')} resizeMode="cover" style={styles.imageContainer}>
             {
                 confirmLogin && 
-                <TouchableOpacity onPress={()=> navigation.navigate('mobileNumber')} style={styles.textWrapper}>
-                    <Button
-            title="Phone Number Sign In"
-            onPress={() => get_IMEI_Number()}
-          />
+                <TouchableOpacity onPress={()=> navigation.navigate('mobileNumber', {uniqueID: uniqueID})} style={styles.textWrapper}>
                 <Text style={styles.loginText}>Login With Mobile</Text>
                 <Image
                     style={styles.arrow}

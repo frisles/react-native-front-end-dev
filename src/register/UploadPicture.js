@@ -17,7 +17,7 @@ import ImgToBase64 from 'react-native-image-base64';
 
 
 const UploadPicture = ({route, navigation}) => {
-    const { phoneNumber, name, dob, gender, occupation } = route?.params;
+    const { uniqueID, phoneNumber, name, dob, gender, occupation } = route?.params;
     console.log("UploadPicture", phoneNumber, name, dob, gender, occupation)
     const [profileFilepath,
         setProfileFilepath] = useState({data: '', uri: ''});
@@ -193,6 +193,7 @@ const UploadPicture = ({route, navigation}) => {
                     </View>
                     <Pressable
                         onPress={() => navigation.navigate('location', {
+                            uniqueID: uniqueID,
                             phoneNumber: phoneNumber,
                             name: name, 
                             dob: dob, 

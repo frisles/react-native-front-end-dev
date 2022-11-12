@@ -13,8 +13,8 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 
 const Details = ({route, navigation}) => {
-    const { phoneNumber } = route?.params;
-    console.log('Details comp phoneNumber', phoneNumber)
+    const { phoneNumber,uniqueID } = route?.params;
+    console.log('Details comp phoneNumber', phoneNumber,uniqueID)
     const gender = ["Male", "Female"];
     const [isDatePickerVisible,
         setDatePickerVisibility] = useState(false);
@@ -94,6 +94,7 @@ const Details = ({route, navigation}) => {
 
             <Pressable
                 onPress={() => navigation.navigate('uploadPicture',{
+                    uniqueID: uniqueID,
                     phoneNumber: phoneNumber,
                     name: Name,
                     dob: dateText,
