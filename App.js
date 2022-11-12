@@ -21,6 +21,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import LoginComponent from './src/register/Login';
 import MobileNumber from './src/register/MobileNumber';
 import VerifyAccount from './src/register/VerifyAccount';
 import Agree from './src/register/Agree';
@@ -85,7 +86,8 @@ function HomeStackScreen() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="mobileNumber">
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="login">
+        <Stack.Screen name="login" component={LoginComponent} />
         <Stack.Screen name="mobileNumber" component={MobileNumber} />
         <Stack.Screen name="verifyAccount" component={VerifyAccount} />
         <Stack.Screen name="agree" component={Agree} />

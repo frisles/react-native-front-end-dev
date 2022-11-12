@@ -21,12 +21,20 @@ import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 // react-native-contacts
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+// react-native-device-info
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+// react-native-device-number
+import com.reactlibrary.devicenumber.DeviceNumberPackage;
 // react-native-geolocation-service
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-get-location
 import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPackage;
+// react-native-image-base64
+import fr.snapp.imagebase64.RNImgToBase64Package;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
+// react-native-imei
+import codes.simen.IMEI.IMEI;
 // react-native-linear-gradient
 import com.BV.LinearGradient.LinearGradientPackage;
 // react-native-maps
@@ -35,6 +43,8 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-sim-data
+import eu.sigrlami.rnsimdata.RNSimDataReactPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -87,13 +97,18 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
       new ReactNativeContacts(),
+      new RNDeviceInfo(),
+      new DeviceNumberPackage(),
       new RNFusedLocationPackage(),
       new ReactNativeGetLocationPackage(),
+      new RNImgToBase64Package(),
       new ImagePickerPackage(),
+      new IMEI(),
       new LinearGradientPackage(),
       new MapsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
+      new RNSimDataReactPackage(),
       new VectorIconsPackage()
     ));
   }

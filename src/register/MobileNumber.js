@@ -5,12 +5,13 @@ import {
     Pressable,
     View,
     TextInput,
-    Button
+    Button,
+    Alert,
+    PermissionsAndroid
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PhoneInput from 'react-native-phone-number-input';
 import auth from '@react-native-firebase/auth';
-
 
 const MobileNumber = ({navigation}) => {
     const [confirm, setConfirm] = useState(null);
@@ -19,6 +20,7 @@ const MobileNumber = ({navigation}) => {
         
         const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const [deviceIMEI, setDeviceIMEI] = useState();
 
     const phoneInput = useRef(null);
 
@@ -28,10 +30,13 @@ const MobileNumber = ({navigation}) => {
         if (initializing) setInitializing(false);
       }
 
+      
     useEffect(() => {
         // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         // console.log('subscriber', subscriber)
         // return subscriber; // unsubscribe on unmount
+        
+        
     }, []);
 
     const signInWithPhoneNumber = async(phoneNumber) => {

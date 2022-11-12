@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {StyleSheet, Text, Pressable, View} from 'react-native';
+import {StyleSheet, Text, Pressable, View, Modal} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import OTPInput from '../components/OTPInput';
 
@@ -9,9 +9,10 @@ const VerifyAccount = ({route, navigation}) => {
     // }
     const [term, setTerm] = useState("");
     const [code, setCode] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
 
     // console.log("getConfirm", navigation?.getParam('number'))
-    // console.log(number, "getConfirm", getConfirm)
+    console.log(number, "getConfirm")
     
     const sendCode = async() => {
         
@@ -27,6 +28,10 @@ const VerifyAccount = ({route, navigation}) => {
         try {
             await getConfirm.confirm(code);
             console.log('success.');
+            setModalVisible(false);
+            navigation.navigate('agree',{
+                phoneNumber: number
+            });
         } catch (error) {
             console.log('Invalid code.');
         }
@@ -69,8 +74,15 @@ const VerifyAccount = ({route, navigation}) => {
                 <Text
                     style={styles.footerLinkText}
                     onPress={() => navigation.navigate('agree')}> Teams and Conditions</Text>
-
-            </Text>
+                </Text>
+            {/* <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      ><Text>OTP Verification Success</Text></Modal> */}
         </View>
     )
 }
