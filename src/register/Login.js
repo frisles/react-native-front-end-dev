@@ -23,22 +23,29 @@ const LoginComponent = ({navigation}) => {
     const [confirmLogin, setConfirmLogin] = useState(false);
 
     const phoneNumberValidate = () => {
-        requestPermissions();
-        DeviceInfo.getPhoneNumber().then((phoneNumber) => {
-            console.log("login DeviceInfo phoneNumber", phoneNumber);
-            axios.get('http://18.212.184.28:3000/api/login').then((response) => {
-                // console.log("response", response.data);
-                response.data.filter(e => { 
-                    if(e.phone === phoneNumber){
-                        setConfirmLogin(false);
-                        navigation.navigate('home')
-                    }
-                    else{
-                        setConfirmLogin(true)
-                    }
-                })
-              });
-        });
+        // requestPermissions();
+        if(PermissionsAndroid.RESULTS.GRANTED){
+            console.log("sdsds", PermissionsAndroid.RESULTS.GRANTED);
+            const IMEI = require('react-native-imei');
+            console.log("IMEI", IMEI.getImei())
+                
+            DeviceInfo.getPhoneNumber().then((phoneNumber) => {
+                Alert.alert('My phone munber', phoneNumber)
+                console.log("login DeviceInfo phoneNumber", phoneNumber);
+                axios.get('http://18.212.184.28:3000/api/login').then((response) => {
+                    // console.log("response", response.data);
+                    response.data.filter(e => { 
+                        if(e.phone === phoneNumber){
+                            setConfirmLogin(false);
+                            navigation.navigate('home')
+                        }
+                        else{
+                            setConfirmLogin(true)
+                        }
+                    })
+                  });
+            });
+        }
     }
 
     const requestPermissions = () => {
