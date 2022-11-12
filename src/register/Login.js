@@ -18,16 +18,40 @@ import axios from 'axios';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-
+export async function request_READ_PHONE_STATE() {
+ 
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE);
+        console.log('granted', granted, "PermissionsAndroid.RESULTS.GRANTED", PermissionsAndroid.RESULTS.GRANTED)
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+   
+        Alert.alert("Permission Granted.");
+      }
+      else {
+   
+        Alert.alert("Permission Not Granted");
+   
+      }
+    } catch (err) {
+      console.warn(err)
+    }
+  }
 const LoginComponent = ({navigation}) => {
     const [confirmLogin, setConfirmLogin] = useState(false);
-
+    const get_IMEI_Number=()=>{
+ 
+        const IMEI = require('react-native-imei');
+     
+        var IMEI_2 = IMEI.getImei();
+        console.log("IMEI", IMEI_2)
+     
+        
+      }
     const phoneNumberValidate = () => {
         // requestPermissions();
         if(PermissionsAndroid.RESULTS.GRANTED){
             console.log("sdsds", PermissionsAndroid.RESULTS.GRANTED);
-            const IMEI = require('react-native-imei');
-            console.log("IMEI", IMEI.getImei())
                 
             DeviceInfo.getPhoneNumber().then((phoneNumber) => {
                 Alert.alert('My phone munber', phoneNumber)
@@ -53,7 +77,11 @@ const LoginComponent = ({navigation}) => {
     }
 
     useEffect(() => {
-        console.log("Login Component")
+        console.log("Login Component");
+        (async () => {
+            const users = await request_READ_PHONE_STATE();
+            console.log("users", users)
+          })();
         phoneNumberValidate();
     }, []);
 
@@ -62,6 +90,10 @@ const LoginComponent = ({navigation}) => {
             {
                 confirmLogin && 
                 <TouchableOpacity onPress={()=> navigation.navigate('mobileNumber')} style={styles.textWrapper}>
+                    <Button
+            title="Phone Number Sign In"
+            onPress={() => get_IMEI_Number()}
+          />
                 <Text style={styles.loginText}>Login With Mobile</Text>
                 <Image
                     style={styles.arrow}
