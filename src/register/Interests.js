@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -14,16 +14,57 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import data from '../../mock.json';
-
-const Interests = ({navigation}) => {
+import axios from 'axios';
+import { environment } from '../../environment';
+const Interests = ({route, navigation}) => {
+  const { uniqueID, phoneNumber, name, dob, gender, 
+    occupation, profilePic, coverPic, latitude,longitude } = route?.params;
   const [BtnColor, setBtnColor] = useState("");
+  const [interestData, setInterestData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  
+  useEffect(() => {
+    axios.get(`${environment.API_URL}/interest`).then((response) => {
+        console.log('response interest', response?.data[0]?.interest.length);
+        setInterestData(response?.data[0]?.interest)
+    }).catch(err => {
+      console.log("interest err", err)
+    });
+  }, []);
 
   const ListItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-            <Text style={styles.itemText}>{item.title}</Text>
+            <Text style={styles.itemText}>{item}</Text>
       </View>)
   }
+
+  const selectedItem = (item) => {
+    setFilterData(filterData.concat(item))
+    setBtnColor('#FFF');
+  }
+
+  const submitLogin = () => {
+    let payload = {
+      "mobile": uniqueID,
+      "phone": phoneNumber,
+      "name": name,
+      "dob": dob,
+      "gender": gender,
+      "occupation": occupation,
+      "profilePicture": profilePic,
+      "coverPicture": coverPic,
+      "latitude": latitude,
+      "longitude": longitude,
+      "interest": filterData
+  }
+  console.log("payload", payload)
+  axios.post(`${environment.API_URL}/login`, payload).then((response) => {
+      console.log('response', response.data)
+  });
+    // navigation.navigate('groups');
+  }
+
   const SECTIONS = [
     {
       data: [
@@ -91,7 +132,7 @@ const Interests = ({navigation}) => {
                         renderSectionHeader={({ section }) => (
                           <FlatList
                             horizontal
-                            data={section.data}
+                            data={filterData}
                             renderItem={({ item }) => <ListItem item={item} />}
                             showsHorizontalScrollIndicator={true}
                           />
@@ -104,21 +145,22 @@ const Interests = ({navigation}) => {
                 </View>
                 <View style={styles.listContainer}>
                   {
-                    data.interests && data.interests.map((e,i) => {
+                    interestData.length > 0 && interestData.map((e,i) => {
+                      // console.log("eeee", e)
                       return <TouchableHighlight
                       key={i}
                       style={styles.listBox}
                       activeOpacity={1}
                       underlayColor="#FB8D33"
-                      onPress={() => setBtnColor('#FFF')}>
-                      <Text style={styles.listText}>{e.title}</Text>
+                      onPress={() => selectedItem(e)}>
+                      <Text style={styles.listText}>{e}</Text>
                     </TouchableHighlight>
                     })
                   }
                 </View>
             </View>
             <Pressable
-                onPress={() => navigation.navigate('groups')}
+                onPress={() => submitLogin()}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>

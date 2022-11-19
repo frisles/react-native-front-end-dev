@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -14,39 +14,52 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const { width, height } = Dimensions.get('window');
+import axios from 'axios';
+import { environment } from '../../environment';
+
 const GiftsDetails = ({navigation}) => {
-    const list = [
-        {
-            'content': 'VIP for 4 hrs'
-        },
-        {
-            'content': 'Send Like in connect'
-        },
-        {
-            'content': 'Send customized message in Connect'
-        },
-        {
-            'content': 'Send 1 message after block'
-        },
-        {
-            'content': 'Highlight your activity for 8 hours'
-        },
-        {
-            'content': 'Highlight your profile for 8 hrs in connect'
-        },
-        {
-            'content': '10% Levelup your team'
-        },
-        {
-            'content': 'Get passport for 8 hours'
-        },
-        {
-            'content': 'Use Advanced filter In Connect for 8 hrs'
-        },
-        {
-            'content': 'Assign 1 task to other Groups'
-        },
-    ]
+    // const list = [
+    //     {
+    //         'content': 'VIP for 4 hrs'
+    //     },
+    //     {
+    //         'content': 'Send Like in connect'
+    //     },
+    //     {
+    //         'content': 'Send customized message in Connect'
+    //     },
+    //     {
+    //         'content': 'Send 1 message after block'
+    //     },
+    //     {
+    //         'content': 'Highlight your activity for 8 hours'
+    //     },
+    //     {
+    //         'content': 'Highlight your profile for 8 hrs in connect'
+    //     },
+    //     {
+    //         'content': '10% Levelup your team'
+    //     },
+    //     {
+    //         'content': 'Get passport for 8 hours'
+    //     },
+    //     {
+    //         'content': 'Use Advanced filter In Connect for 8 hrs'
+    //     },
+    //     {
+    //         'content': 'Assign 1 task to other Groups'
+    //     },
+    // ]
+    const [list, setList] = useState([]);
+    useEffect(() => {
+        axios.get(`${environment.API_URL}/chest`).then((response) => {
+            const {offer} = response.data[0];
+            console.log("chest get response >>", offer);
+            setList(offer)
+        });
+    }, []);
+
+    console.log("list", list)
     return (
         <ScrollView showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
@@ -84,7 +97,7 @@ const GiftsDetails = ({navigation}) => {
                 </View>
                 <View style={styles.scratchWrapper}>
                     {
-                        list.length && list.map((e, i) => {
+                        list !== undefined && list.map((e, i) => {
                             return(
                                 <Pressable onPress={() => navigation.navigate('giftsHome')} style={styles.scratchContainer} key={i}>
                                 <ImageBackground

@@ -86,7 +86,7 @@ function HomeStackScreen() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="login">
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="generateComponent">
         <Stack.Screen name="login" component={LoginComponent} />
         <Stack.Screen name="mobileNumber" component={MobileNumber} />
         <Stack.Screen name="verifyAccount" component={VerifyAccount} />

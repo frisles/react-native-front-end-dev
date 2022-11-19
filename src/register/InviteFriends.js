@@ -18,6 +18,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Contacts from 'react-native-contacts';
 import SearchComponent from '../components/search';
 
+
 const width = Dimensions
     .get('window')
     .width;
@@ -25,7 +26,8 @@ const height = Dimensions
     .get('window')
     .height;
 
-const InviteFriends = ({navigation}) => {
+const InviteFriends = ({route, navigation}) => {
+    const { uniqueID, phoneNumber, name, dob, gender, occupation, profilePic, coverPic, latitude, longitude } = route?.params;
     let [contacts,
         setContacts] = useState([]);
     const [searchPhrase,
@@ -59,11 +61,25 @@ const InviteFriends = ({navigation}) => {
             });
     };
 
+
+    
+
     // console.log('contacts', contacts.length)
     return (
         <View style={styles.container}>
             <Pressable
-                onPress={() => navigation.navigate('interests')}
+                onPress={() => navigation.navigate('interests', {
+                    uniqueID: uniqueID,
+                    phoneNumber: phoneNumber,
+                    name: name, 
+                    dob: dob, 
+                    gender: gender, 
+                    occupation: occupation,
+                    profilePic: profilePic,
+                    coverPic: coverPic,
+                    latitude: latitude,
+                    longitude: longitude
+                })}
                 style={styles.skipContainer}>
                 <Text style={styles.skipText}>
                     Skip

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -14,9 +14,14 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const { width, height } = Dimensions.get('window');
+import CountDown from 'react-native-countdown-component';
+// import VideoPlayer from 'react-native-video-player';
+import Video from "react-native-video";
 
 const GenerateComponent = ({navigation}) => {
-    const [Index, setIndex] = useState(0)
+    const [Index, setIndex] = useState(0);
+    const [showVideo, setShowVideo] = useState(false);
+    
     const giftList = [
         {
             "name": "Item Name"
@@ -36,7 +41,16 @@ const GenerateComponent = ({navigation}) => {
         {
             "name": "Item Name"
         },
-    ]
+    ];
+    
+    const speedUp = () => {
+        setShowVideo(true)
+    }
+
+    const onVideoEnd = (video) => {
+        console.log("video", video);
+        setShowVideo(false)
+    }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}
@@ -68,11 +82,26 @@ const GenerateComponent = ({navigation}) => {
                                 <Text style={styles.giftTitle}>Name</Text>
                             </View>
                             <View style={styles.giftPointsTop}>
-                                <Text style={styles.giftPointTitle}>+100 <Text style={styles.pointSubText}>pts</Text></Text>
+                                <Text style={styles.giftPointTitle}>100 <Text style={styles.pointSubText}>pts</Text></Text>
+                                <CountDown
+                                    size={10}
+                                    until={100}
+                                    onFinish={() => console.log('Finished')}
+                                    digitStyle={{backgroundColor: 'transparent', borderWidth: 0, borderColor: 'transparent'}}
+                                    digitTxtStyle={{marginHorizontal: -10, color: '#FFF'}}
+                                    timeLabelStyle={{marginHorizontal: -10, fontSize: 8, color: '#FFF', fontWeight: 'bold'}}
+                                    separatorStyle={{marginHorizontal: -10, color: '#FFF'}}
+                                    timeToShow={['H', 'M', 'S']}
+                                    timeLabels={{m: null, s: null}}
+                                    showSeparator
+                                />
                             </View>
                             <View style={styles.giftCount}>
                                 <Text style={styles.giftCountText}>0/1000</Text>
                             </View>
+                            <Pressable onPress={() => speedUp()}  style={styles.actionButton}>
+                                <Text style={styles.actionButtonText}>Speed up</Text>
+                            </Pressable>
                     </ImageBackground>
                     </Pressable>
                     <Pressable style={styles.giftItem}>
@@ -83,6 +112,32 @@ const GenerateComponent = ({navigation}) => {
                         </Pressable>
                 </View>
             </View>
+                {
+                    showVideo &&
+                    <View style={styles.videoWrapper}>
+                        {/* <VideoPlayer
+                            video={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+                            videoWidth={width}
+                            videoHeight={height}
+                            autoplay={true}
+                            showDuration={true}
+                            fullScreenOnLongPress={true}
+                            thumbnail={{ uri: 'https://i.picsum.photos/id/866/1600/900.jpg' }}
+                            resizeMode={'cover'}
+                        /> */}
+                        <Video
+                            source={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4' }}
+                            style={{ width: width, height: height }}
+                            controls={true}
+                            // audioOnly={true}
+                            poster="https://i.picsum.photos/id/866/1600/900.jpg"
+                            onEnd={onVideoEnd}
+                            // ref={(ref) => {
+                            // this.player = ref
+                            // }} 
+                            />
+                </View>
+                }
         </View>
         </ScrollView>
     )
@@ -134,13 +189,31 @@ const styles = StyleSheet.create({
     giftContainer:{
         alignItems: 'center',
         paddingVertical: 30,
-        backgroundColor: '#EBECFF'
+        backgroundColor: '#EBECFF',
+        
     },
     giftWrapper:{
         width: '85%',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
+    },
+    actionButton:{
+        backgroundColor: '#5D6AFF',
+        borderRadius: 18,
+        width: 83,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        top: 32
+    },
+    actionButtonText:{
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: '400',
+        color: '#FFF',
+        lineHeight: 15,
     },
     giftItem:{
         width: 164,
@@ -151,7 +224,8 @@ const styles = StyleSheet.create({
         width: 164,
         height: 201,
         justifyContent: 'center',
-        paddingVertical: 15
+        paddingVertical: 15,
+        alignItems: 'center'
     },
     giftTop:{
         flexDirection: 'row',
@@ -174,9 +248,12 @@ const styles = StyleSheet.create({
     giftPointsTop:{
         backgroundColor: '#F99746',
         height: 34,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        marginBottom: 'auto'
+        marginBottom: 'auto',
+        width: '100%',
+        flexDirection: 'row',
+        paddingHorizontal: 10
     },
     giftPointTitle:{
         fontFamily: 'Inter',
@@ -188,7 +265,7 @@ const styles = StyleSheet.create({
     },
     pointSubText:{
         fontFamily: 'Inter',
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: '600',
         color: '#FFF',
         lineHeight: 20,
@@ -225,6 +302,12 @@ const styles = StyleSheet.create({
         color: '#FFF',
         lineHeight: 20,
         textAlign: 'center'
+    },
+    videoWrapper:{
+        flex: 1,
+        position: 'absolute',
+        top: 0,
+        bottom: 0
     }
 })
 

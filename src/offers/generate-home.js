@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -14,9 +14,21 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const { width, height } = Dimensions.get('window');
+import axios from 'axios';
+import { environment } from '../../environment';
 
 const GenerateHome = ({navigation}) => {
-    const [Index, setIndex] = useState(0)
+    const [Index, setIndex] = useState(0);
+    const [item, setItem] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${environment.API_URL}/produce`).then((response) => {
+            const {items} = response.data[0];
+            console.log("produce get response >>", items);
+            setItem(items)
+        });
+    }, []);
+
     const giftList = [
         {
             "name": "Item Name"
@@ -60,7 +72,7 @@ const GenerateHome = ({navigation}) => {
             <View style={styles.giftContainer}>
                 <View style={styles.giftWrapper}>
                     {
-                        giftList.length && giftList.map((e,i) => {
+                        item !== undefined && item.map((e,i) => {
                             return (
                                 <Pressable key={i} style={styles.giftItem} onPress={() => setIndex(i)}>
                                 <ImageBackground
@@ -72,10 +84,10 @@ const GenerateHome = ({navigation}) => {
                                             <Image style={styles.doneIcon} source={Index === i ? require('../assets/images/small-tick.png'): require('../assets/images/icon-done-grey.png')}/>
                                         </View>
                                         <View style={styles.giftPointsTop}>
-                                            <Text style={styles.giftPointTitle}>+100 <Text style={styles.pointSubText}>pts</Text></Text>
+                                            <Text style={styles.giftPointTitle}>{e?.points} <Text style={styles.pointSubText}>pts</Text></Text>
                                         </View>
                                         <View style={styles.giftCount}>
-                                            <Text style={styles.giftCountText}>0/1000</Text>
+                                            <Text style={styles.giftCountText}>{e?.default}/{e?.total}</Text>
                                         </View>
                                 </ImageBackground>
                                 </Pressable>

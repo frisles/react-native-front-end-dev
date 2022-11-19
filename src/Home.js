@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -10,14 +10,51 @@ import {
     View,
     Dimensions,
     ImageBackground,
-    Image
+    Image,
+    PermissionsAndroid
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ScheduleHome from './components/schedule-home';
+import axios from 'axios';
+import DeviceInfo from 'react-native-device-info';
+import { environment } from '../environment';
 
 const { width, height } = Dimensions.get('window');
 
 const Home = ({navigation}) => {
+
+    const [profileName, setProfileName] = useState('');
+    const [profilePic, setProfilePic] = useState('');
+
+    useEffect(() => {
+        if(PermissionsAndroid.RESULTS.GRANTED){
+            DeviceInfo.getUniqueId().then((uniqueId) => {
+                console.log("uniqueId gr", uniqueId)
+                let payload = {"mobileUniqueID":uniqueId};
+                axios.post(`${environment.API_URL}/profile`, payload).then((response) => {
+                    // console.log("profile post response",response.data);
+                    const { mobileUniqueID } = response.data;
+                    console.log("profile post response >>",mobileUniqueID);
+                    if(mobileUniqueID !== ""){
+                        const homePayload = {
+                            "mobileUniqueID" : mobileUniqueID
+                        }
+                        axios.post(`${environment.API_URL}/home`, homePayload).then((response) => {
+                            console.log("home post response ==>",response.data);
+                            const {name, profilePicture} = response.data;
+                            setProfileName(name);
+                            setProfilePic(profilePicture);
+                        }).catch(err => {
+                            console.log("home post err", err)
+                        });
+                    }
+                }).catch(err => {
+                    console.log("profile post err", err)
+                });
+            })
+        }
+    }, []);
+
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
@@ -40,7 +77,7 @@ const Home = ({navigation}) => {
                         </View>    
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>Welcome Back</Text>
-                            <Text style={styles.name}>Clara Fredry</Text>
+                            <Text style={styles.name}>{profileName}</Text>
                         </View>    
                         <View style={styles.badgeContainer}>
                             <ImageBackground
@@ -65,7 +102,7 @@ const Home = ({navigation}) => {
                             resizeMode="cover"
                             style={styles.profileImageContainer}>
                                 <Pressable onPress={() => navigation.navigate('profileHome')}>
-                                <Image style={styles.profilePic} source={require('../src/assets/images/picture-1.png')}/>
+                                <Image style={styles.profilePic} source={{ uri: profilePic}}/>
 
                                 </Pressable>
                         </ImageBackground>

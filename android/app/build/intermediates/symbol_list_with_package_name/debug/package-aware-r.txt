@@ -755,6 +755,7 @@ attr roundingBorderColor
 attr roundingBorderPadding
 attr roundingBorderWidth
 attr saturation
+attr scalableType
 attr scopeUris
 attr scrimAnimationDuration
 attr scrimBackground
@@ -1850,8 +1851,12 @@ id cache_measures
 id cancel_button
 id catalyst_redbox_title
 id center
+id centerBottom
+id centerBottomCrop
 id centerCrop
 id centerInside
+id centerTop
+id centerTopCrop
 id center_horizontal
 id center_vertical
 id chain
@@ -1905,6 +1910,7 @@ id easeInOut
 id easeOut
 id edit_query
 id end
+id endInside
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
@@ -1965,6 +1971,12 @@ id labelled_by
 id largeLabel
 id layout
 id left
+id leftBottom
+id leftBottomCrop
+id leftCenter
+id leftCenterCrop
+id leftTop
+id leftTopCrop
 id light
 id line1
 id line3
@@ -2039,6 +2051,12 @@ id react_test_id
 id rectangles
 id reverseSawtooth
 id right
+id rightBottom
+id rightBottomCrop
+id rightCenter
+id rightCenterCrop
+id rightTop
+id rightTopCrop
 id right_icon
 id right_side
 id rn_frame_file
@@ -2099,6 +2117,7 @@ id src_over
 id standard
 id start
 id startHorizontal
+id startInside
 id startVertical
 id staticLayout
 id staticPostLayout
@@ -3334,6 +3353,7 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+styleable scaleStyle scalableType
 xml image_share_filepaths
 xml imagepicker_provider_paths
 xml rn_dev_preferences
