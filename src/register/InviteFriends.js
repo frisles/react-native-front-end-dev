@@ -32,32 +32,63 @@ const InviteFriends = ({route, navigation}) => {
         setContacts] = useState([]);
     const [searchPhrase,
         setSearchPhrase] = useState("");
-    useEffect(() => {
-        if (Platform.OS === 'android') {
-            PermissionsAndroid
-                .request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
-                title: 'Contacts',
-                message: 'This app would like to view your contacts.'
-            })
-                .then(() => {
-                    loadContacts();
-                });
-        } else {
-            loadContacts();
+
+        async function requestContactsPermission() {
+            if (Platform.OS === 'ios') {
+                return true
+               } else {
+            const granted = await PermissionsAndroid.requestMultiple([
+                PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+                PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS,
+                ]);
+                if (
+                    granted['android.permission.READ_CONTACTS'] === PermissionsAndroid.RESULTS.GRANTED &&
+                    granted['android.permission.WRITE_CONTACTS'] === PermissionsAndroid.RESULTS.GRANTED
+                    ) {
+                        console.log('granted if ==>> ');
+                        return true
+                    } else {
+                        console.log('granted else ==>> ');
+                        return false
+                    }
+                }
+                    
         }
+
+    useEffect(() => {
+        // if (Platform.OS === 'android') {
+        //     PermissionsAndroid
+        //         .request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
+        //         title: 'Contacts',
+        //         message: 'This app would like to view your contacts.'
+        //     })
+        //         .then(() => {
+        //             loadContacts();
+        //         });
+        // } else {
+        //     loadContacts();
+        // }
+        requestContactsPermission().then((didGetPermission) => {
+            if (didGetPermission) {
+                console.log("didGetPermission", didGetPermission);
+                loadContacts()
+            }
+        })
+        
+
     }, [])
 
     const loadContacts = () => {
         Contacts
             .getAll()
             .then(contacts => {
-                contacts.sort((a, b) => a.givenName.toLowerCase() > b.givenName.toLowerCase(),);
-                console.log('contacts', contacts[0].phoneNumbers[0].number)
+                console.log('contacts ==>', contacts)
+                // contacts.sort((a, b) => a.givenName.toLowerCase() > b.givenName.toLowerCase(),);
+                // console.log('contacts', contacts[0].phoneNumbers[0].number)
                 setContacts(contacts);
             })
             .catch(e => {
-                alert('Permission to access contacts was denied');
-                console.log('Permission to access contacts was denied');
+                console.log('Permission to access contacts was denied', e);
             });
     };
 
@@ -92,35 +123,39 @@ const InviteFriends = ({route, navigation}) => {
                     <SearchComponent  placeHolder={'Search'} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase}/>
                 </View>
                 <View style={styles.contactContainer}>
-                <SafeAreaView>
-    <ScrollView showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}>
-                {contacts.length > 0 && contacts.map((e, i) => {
-                
-                return (
-                  
-                    <View
-                        style={styles.listContainer}
-                        key={e
-                        ?.recordID}>
-                        <Image
-                style={styles.imageContainer}
-                source={{
-                uri: e.thumbnailPath
-            }}/>
-                        <View style={styles.contactWrapper}>
-                        
-                        <Text style={styles.contactName}>{e?.displayName ? e?.displayName: ''}</Text>
-                        <Text style={styles.contactNumber}>{e?.phoneNumbers[0].number}</Text>
-                        </View>
-                        <Pressable onPress={() => navigation.navigate('')} style={styles.smallButton}>
-                            <Text style={styles.smallButtonText}>Invite</Text>
-                        </Pressable>
-                    </View>
-                )
-            })
-        }
-        </ScrollView>
+                    <SafeAreaView>
+                        <ScrollView showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}>
+                            {contacts.length > 0 && contacts.map((e, i) => {
+                                // console.log('eeee==> ', e?.displayName.substring(0, 1))
+                                return (
+                                    <View
+                                        style={styles.listContainer}
+                                        key={e
+                                        ?.recordID}>
+                                        {
+                                            e?.thumbnailPath !== '' ?
+                                            <Image
+                                                style={styles.imageContainer}
+                                                source={{
+                                                uri: e?.thumbnailPath
+                                            }}/> :
+                                            <View style={styles.contactImage}>
+                                                <Text style={styles.contactImageTxt}>{e?.givenName.substring(0, 1)}</Text>
+                                            </View>
+                                        }    
+                                        <View style={styles.contactWrapper}>
+                                            <Text style={styles.contactName}>{e?.displayName ? e?.displayName: ''}</Text>
+                                            <Text style={styles.contactNumber}>{e?.phoneNumbers.length ? e?.phoneNumbers[0]?.number : ''}</Text>
+                                        </View>
+                                        <Pressable onPress={() => navigation.navigate('')} style={styles.smallButton}>
+                                            <Text style={styles.smallButtonText}>Invite</Text>
+                                        </Pressable>
+                                    </View>
+                                    )
+                                })
+                            }
+                        </ScrollView>
                     </SafeAreaView>
                 </View>
             </View>
@@ -194,7 +229,7 @@ const styles = StyleSheet.create({
     searchContainer: {},
     contactContainer: {
         marginTop: 20,
-        height: height / 2.5,
+        height: height / 2,
         width: '100%',
         flexDirection: 'column'
     },
@@ -210,6 +245,21 @@ const styles = StyleSheet.create({
       width: 54,
       height: 54,
       borderRadius: 54
+  },
+  contactImage:{
+    backgroundColor: '#5D6AFF',
+    width: 55,
+    height: 55,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  contactImageTxt:{
+    color: '#FFF',
+    fontFamily: 'Inter',
+    fontSize: 24,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   contactWrapper: {
       flexDirection: 'column',
