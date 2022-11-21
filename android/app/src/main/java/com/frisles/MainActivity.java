@@ -3,9 +3,11 @@ package com.frisles;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import android.content.Intent; // <-- include if not already there
 
 public class MainActivity extends ReactActivity {
 
+  
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
@@ -44,5 +46,13 @@ public class MainActivity extends ReactActivity {
       // More on this on https://reactjs.org/blog/2022/03/29/react-v18.html
       return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     }
+
+    // @Override
+    // public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //     super.onActivityResult(requestCode, resultCode, data);
+    //     //probably some other stuff here
+    //     SendSMSPackage.getInstance().onActivityResult(requestCode, resultCode, data);
+    // }
+    
   }
 }

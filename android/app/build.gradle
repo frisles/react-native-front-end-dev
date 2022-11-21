@@ -235,6 +235,8 @@ android {
             // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
+            // minifyEnabled false
+            matchingFallbacks = ['release', 'debug']
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             // add the code from below line.
         applicationVariants.all{
@@ -276,6 +278,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.4.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation project(':react-native-contacts')
+    implementation project(':react-native-sms')
+    implementation project(':react-native-get-sms-android')
 
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:30.5.0')

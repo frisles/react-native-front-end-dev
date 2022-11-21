@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
     SafeAreaView,
     ScrollView,
+    ActivityIndicator,
     StatusBar,
     StyleSheet,
     Text,
@@ -17,6 +18,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Contacts from 'react-native-contacts';
 import SearchComponent from '../components/search';
+import SmsAndroid from 'react-native-get-sms-android';
 
 
 const width = Dimensions
@@ -28,11 +30,11 @@ const height = Dimensions
 
 const InviteFriends = ({route, navigation}) => {
     const { uniqueID, phoneNumber, name, dob, gender, occupation, profilePic, coverPic, latitude, longitude } = route?.params;
-    let [contacts,
-        setContacts] = useState([]);
-    const [searchPhrase,
-        setSearchPhrase] = useState("");
+    let [contacts, setContacts] = useState([]);
+    const [searchPhrase, setSearchPhrase] = useState("");
+    const [spinner, setSpinner] = useState(false);
 
+    // console.log("searchPhrase invite ", searchPhrase)
         async function requestContactsPermission() {
             if (Platform.OS === 'ios') {
                 return true
@@ -56,46 +58,88 @@ const InviteFriends = ({route, navigation}) => {
         }
 
     useEffect(() => {
-        // if (Platform.OS === 'android') {
-        //     PermissionsAndroid
-        //         .request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
-        //         title: 'Contacts',
-        //         message: 'This app would like to view your contacts.'
-        //     })
-        //         .then(() => {
-        //             loadContacts();
-        //         });
-        // } else {
-        //     loadContacts();
-        // }
-        requestContactsPermission().then((didGetPermission) => {
-            if (didGetPermission) {
-                console.log("didGetPermission", didGetPermission);
-                loadContacts()
-            }
-        })
-        
+        if(searchPhrase === ''){
+           requestContactsPermission().then((didGetPermission) => {
+                if (didGetPermission) {
+                    console.log("didGetPermission", didGetPermission);
+                    loadContacts()
+                }
+            });
+        }
+        else{
+            setSpinner(true);
+            Contacts.getContactsMatchingString(searchPhrase).then(contacts => {
+                contacts.sort((a, b) => a.displayName.localeCompare(b.displayName));
+                setContacts(contacts);
+                setSpinner(false);
+            }).catch(e => {
+                console.log('no contacts in list', e);
+            });
+            // contacts.filter((x) => {
+            //     if(x.displayName.toLowerCase().includes(searchPhrase.toLowerCase())){
+            //         console.log("xxx",x);
+            //         setContacts(x);      
+            //     }
+            //     else{
+            //         setContacts(contacts)
+            //     }
+            // })
+        }
 
-    }, [])
-
+    }, [searchPhrase])
+    // console.log("contacts render", contacts)
     const loadContacts = () => {
+        setSpinner(true);
         Contacts
             .getAll()
             .then(contacts => {
-                console.log('contacts ==>', contacts)
+                // console.log('contacts ==>', contacts)
                 // contacts.sort((a, b) => a.givenName.toLowerCase() > b.givenName.toLowerCase(),);
                 // console.log('contacts', contacts[0].phoneNumbers[0].number)
+                contacts.sort((a, b) => a.displayName.localeCompare(b.displayName));
                 setContacts(contacts);
+                setSpinner(false);
             })
             .catch(e => {
                 console.log('Permission to access contacts was denied', e);
             });
     };
 
+    const getSMSPermission = async () => {
+        const granted = await PermissionsAndroid.requestMultiple([
+            PermissionsAndroid.PERMISSIONS.SEND_SMS
+            ]);
+            if (
+                granted['android.permission.SEND_SMS'] === PermissionsAndroid.RESULTS.GRANTED
+                ) {
+                    console.log('granted if ==>> ');
+                    return true
+                } else {
+                    console.log('granted else ==>> ');
+                    return false
+                }
+            
+      };
 
+    const sendSMSCallback = async (number) =>{
+        // SendSMS.send("+919952022301", "Hey");
+        const result = await getSMSPermission();
+        console.log("result sendSMSCallback", result);
+        if(result){
+            SmsAndroid.autoSend(
+                number,
+                'welcome message frisles app',
+                (fail) => {
+                    console.log('Failed with this error: ' + fail);
+                },
+                (success) => {
+                    console.log('SMS sent successfully', success);
+                },
+            );
+        }
+    }
     
-
-    // console.log('contacts', contacts.length)
+    console.log('contacts ==>', contacts.length)
     return (
         <View style={styles.container}>
             <Pressable
@@ -116,6 +160,7 @@ const InviteFriends = ({route, navigation}) => {
                     Skip
                 </Text>
             </Pressable>
+            {spinner && <ActivityIndicator size="large" color="#0000ff" />}
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Invite Friends</Text>
                 <Text style={styles.subTitle}>All Contacts</Text>
@@ -127,7 +172,7 @@ const InviteFriends = ({route, navigation}) => {
                         <ScrollView showsVerticalScrollIndicator={false}
                             showsHorizontalScrollIndicator={false}>
                             {contacts.length > 0 && contacts.map((e, i) => {
-                                // console.log('eeee==> ', e?.displayName.substring(0, 1))
+                                // console.log('eeee==> ', e?.givenName)
                                 return (
                                     <View
                                         style={styles.listContainer}
@@ -141,14 +186,14 @@ const InviteFriends = ({route, navigation}) => {
                                                 uri: e?.thumbnailPath
                                             }}/> :
                                             <View style={styles.contactImage}>
-                                                <Text style={styles.contactImageTxt}>{e?.givenName.substring(0, 1)}</Text>
+                                                <Text style={styles.contactImageTxt}>{e?.displayName.substring(0, 1)}</Text>
                                             </View>
                                         }    
                                         <View style={styles.contactWrapper}>
                                             <Text style={styles.contactName}>{e?.displayName ? e?.displayName: ''}</Text>
                                             <Text style={styles.contactNumber}>{e?.phoneNumbers.length ? e?.phoneNumbers[0]?.number : ''}</Text>
                                         </View>
-                                        <Pressable onPress={() => navigation.navigate('')} style={styles.smallButton}>
+                                        <Pressable onPress={() => sendSMSCallback(e?.phoneNumbers[0]?.number)} style={styles.smallButton}>
                                             <Text style={styles.smallButtonText}>Invite</Text>
                                         </Pressable>
                                     </View>
@@ -160,7 +205,7 @@ const InviteFriends = ({route, navigation}) => {
                 </View>
             </View>
             <Pressable
-                onPress={() => navigation.navigate('interests')}
+                onPress={() => sendSMSCallback()}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
