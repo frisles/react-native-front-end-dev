@@ -12,6 +12,7 @@ import {
     View,
     Image,
     PermissionsAndroid,
+    ToastAndroid,
     Dimensions,
     Platform
 } from 'react-native';
@@ -123,20 +124,40 @@ const InviteFriends = ({route, navigation}) => {
 
     const sendSMSCallback = async (number) =>{
         // SendSMS.send("+919952022301", "Hey");
-        const result = await getSMSPermission();
-        console.log("result sendSMSCallback", result);
-        if(result){
-            SmsAndroid.autoSend(
-                number,
-                'welcome message frisles app',
-                (fail) => {
-                    console.log('Failed with this error: ' + fail);
-                },
-                (success) => {
-                    console.log('SMS sent successfully', success);
-                },
-            );
-        }
+        getSMSPermission().then(e => {
+            console.log(e, "result sendSMSCallback", number);
+            if(e){
+                SmsAndroid.autoSend(
+                    number,
+                    'welcome message frisles app',
+                    (fail) => {
+                        console.log('Failed with this error: ' + fail);
+                        ToastAndroid.showWithGravityAndOffset(
+                            `Request ${fail}`,
+                            ToastAndroid.LONG,
+                            ToastAndroid.BOTTOM,
+                            25,
+                            height
+                          );
+                    },
+                    (success) => {
+                        console.log('SMS sent successfully', success);
+                        ToastAndroid.showWithGravityAndOffset(
+                            `Request ${success}`,
+                            ToastAndroid.LONG,
+                            ToastAndroid.BOTTOM,
+                            25,
+                            height
+                          );
+                    },
+                );
+            }
+
+        });
+    }
+
+    const contactCallback = () => {
+
     }
     
     console.log('contacts ==>', contacts.length)
@@ -205,7 +226,18 @@ const InviteFriends = ({route, navigation}) => {
                 </View>
             </View>
             <Pressable
-                onPress={() => sendSMSCallback()}
+                onPress={() => navigation.navigate('interests', {
+                    uniqueID: uniqueID,
+                    phoneNumber: phoneNumber,
+                    name: name, 
+                    dob: dob, 
+                    gender: gender, 
+                    occupation: occupation,
+                    profilePic: profilePic,
+                    coverPic: coverPic,
+                    latitude: latitude,
+                    longitude: longitude
+                })}
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
