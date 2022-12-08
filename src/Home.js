@@ -118,7 +118,7 @@ const Home = ({navigation}) => {
                             <Pressable onPress={() => navigation.navigate('notifications')}  style={styles.notifyWrapper}>
                                 <Image style={styles.notifyIcon} source={require('../src/assets/images/notify-icon.png')}/>
                             </Pressable>
-                            <Pressable onPress={() => navigation.navigate('slambookHome')}  style={styles.badgeWrapper}>
+                            <Pressable onPress={() => navigation.navigate('SlambookHomeNew')}  style={styles.badgeWrapper}>
                                 <Image style={styles.badgeIcon} source={require('../src/assets/images/badge.png')}/>
                             </Pressable>
                         </View>    

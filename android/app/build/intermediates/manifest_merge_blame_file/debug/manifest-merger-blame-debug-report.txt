@@ -72,8 +72,8 @@
 31-->[com.google.android.gms:play-services-measurement:21.1.1] C:\Users\heman\.gradle\caches\transforms-3\0f5a2b7858f769c433c1cd8efaf96180\transformed\jetified-play-services-measurement-21.1.1\AndroidManifest.xml:26:5-110
 31-->[com.google.android.gms:play-services-measurement:21.1.1] C:\Users\heman\.gradle\caches\transforms-3\0f5a2b7858f769c433c1cd8efaf96180\transformed\jetified-play-services-measurement-21.1.1\AndroidManifest.xml:26:22-107
 32    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-32-->[com.google.android.gms:play-services-iid:16.0.0] C:\Users\heman\.gradle\caches\transforms-3\21db2d17e8c2c41ebd90c09b87eb0085\transformed\jetified-play-services-iid-16.0.0\AndroidManifest.xml:23:5-82
-32-->[com.google.android.gms:play-services-iid:16.0.0] C:\Users\heman\.gradle\caches\transforms-3\21db2d17e8c2c41ebd90c09b87eb0085\transformed\jetified-play-services-iid-16.0.0\AndroidManifest.xml:23:22-79
+32-->[com.google.android.gms:play-services-iid:16.0.0] C:\Users\heman\.gradle\caches\transforms-3\a23026b56eddf7aa00a02be4e139f9db\transformed\jetified-play-services-iid-16.0.0\AndroidManifest.xml:23:5-82
+32-->[com.google.android.gms:play-services-iid:16.0.0] C:\Users\heman\.gradle\caches\transforms-3\a23026b56eddf7aa00a02be4e139f9db\transformed\jetified-play-services-iid-16.0.0\AndroidManifest.xml:23:22-79
 33
 34    <uses-feature
 34-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\heman\.gradle\caches\transforms-3\39eb60630793a4472cdc8f2ac41c8c0e\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35

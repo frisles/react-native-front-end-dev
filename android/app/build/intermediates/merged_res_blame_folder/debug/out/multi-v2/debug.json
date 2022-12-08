@@ -168,6 +168,25 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\heman\\.gradle\\caches\\transforms-3\\904be4856cb00a5786e4191f994f6420\\transformed\\jetified-android-maps-utils-0.5\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,7,10",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,93,301,461",
+                        "endLines": "2,6,9,14",
+                        "endColumns": "37,12,12,12",
+                        "endOffsets": "88,296,456,708"
+                    },
+                    "to": {
+                        "startLines": "879,4773,4777,4780",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "51098,315346,315554,315714",
+                        "endLines": "879,4776,4779,4784",
+                        "endColumns": "37,12,12,12",
+                        "endOffsets": "51131,315549,315709,315961"
+                    }
+                },
+                {
                     "source": "C:\\Users\\heman\\.gradle\\caches\\transforms-3\\1b9cccc0d274efaef828cf432460b386\\transformed\\transition-1.2.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -546,25 +565,6 @@
                         "endLines": "406,407,408,409,410,411,412,413,1035,1036,1037,1038,1039,1040,1041,1042,1044,1045,1046,1047,1048,1049,1050,1051,1052,6638,7278",
                         "endColumns": "89,79,89,89,79,80,79,79,104,180,124,106,179,122,115,102,187,104,180,124,174,147,62,61,78,20,20",
                         "endOffsets": "19955,20035,20125,20215,20295,20376,20456,20536,62397,62578,62703,62810,62990,63113,63229,63332,63687,63792,63973,64098,64273,64421,64484,64546,64625,434956,467081"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\heman\\.gradle\\caches\\transforms-3\\84a71752c9394b051e4fab196854f03f\\transformed\\jetified-android-maps-utils-0.5\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,7,10",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,93,301,461",
-                        "endLines": "2,6,9,14",
-                        "endColumns": "37,12,12,12",
-                        "endOffsets": "88,296,456,708"
-                    },
-                    "to": {
-                        "startLines": "879,4773,4777,4780",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "51098,315346,315554,315714",
-                        "endLines": "879,4776,4779,4784",
-                        "endColumns": "37,12,12,12",
-                        "endOffsets": "51131,315549,315709,315961"
                     }
                 },
                 {

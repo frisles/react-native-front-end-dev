@@ -48,6 +48,7 @@ import ProfileHome from './src/profile/profile-home';
 import ProfileEdit from './src/profile/profile-edit';
 import ConnectHome from './src/connect/connect-home';
 import InviteToGroup from './src/connect/invite-to-group';
+import SlambookHomeNew from './src/slambook/slambook-request-new';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,7 +87,7 @@ function HomeStackScreen() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="login">
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="SlambookHomeNew">
         <Stack.Screen name="login" component={LoginComponent} />
         <Stack.Screen name="mobileNumber" component={MobileNumber} />
         <Stack.Screen name="verifyAccount" component={VerifyAccount} />
@@ -105,6 +106,7 @@ const App = () => {
         <Stack.Screen name="slambookRequest" component={SlambookRequest} />
         <Stack.Screen name="slambookForm" component={SlambookForm} />
         <Stack.Screen name="slambookHome" component={SlambookHome} />
+        <Stack.Screen name="SlambookHomeNew" component={SlambookHomeNew} />
         <Stack.Screen name="notifications" component={Notifications} />
         <Stack.Screen name="scheduledHome" component={ScheduledHome} />
         <Stack.Screen name="createActivity" component={CreateActivity} />
