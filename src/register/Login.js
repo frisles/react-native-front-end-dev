@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
         position: 'relative',
         right: 40,
-        bottom: 5
+        bottom: 70
     },
     loginText:{
         fontFamily: 'Inter',

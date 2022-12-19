@@ -85,8 +85,7 @@ const MobileNumber = ({route, navigation}) => {
         <View style={styles.container}>
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Mobile Number</Text>
-                <Text style={styles.subContent}>Please enter your valid phone number. We will
-                    send you 6-digit code to verify account.</Text>
+                <Text style={styles.subContent}>When you tap continue, Fisles will send you a 6 digit verification code. Messages and data rates may apply. The verified phone number can be used to log in. Learn what happens when your number changes.</Text>
             </View>
             {/* <TextInput value={phoneNumber} onChangeText={text => setphoneNumber(text)} style={{color: '2C2C2C', fontSize: 14, borderColor: '#000', borderWidth: 1, width: '80%'}} />
       <Button title="sign in" onPress={() => signInWithPhoneNumber(phoneNumber)} /> */}
@@ -144,10 +143,10 @@ const styles = StyleSheet.create({
     },
     subContent: {
         fontFamily: 'Inter',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '400',
         color: '#2C2C2C',
-        lineHeight: 24,
+        lineHeight: 20,
         textAlign: 'center'
     },
     phoneNumberView: {
@@ -155,15 +154,15 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: '80%',
         padding: 0,
-        height: 70,
+        height: 80,
         backgroundColor: 'white'
     },
     textInput:{
         fontFamily: 'Inter',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '600',
         color: '#2C2C2C',
-        lineHeight: 24
+        lineHeight: 34
     },
     buttonContainer: {
         width: '80%',

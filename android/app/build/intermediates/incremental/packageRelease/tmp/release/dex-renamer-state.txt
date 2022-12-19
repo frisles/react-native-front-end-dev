@@ -1,0 +1,7 @@
+#Tue Dec 20 03:35:58 IST 2022
+base.1=E\:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+path.1=classes2.dex
+base.0=E\:\\Frisles\\react-native-front-end-dev\\frisles\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

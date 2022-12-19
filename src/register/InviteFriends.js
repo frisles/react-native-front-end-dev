@@ -163,7 +163,7 @@ const InviteFriends = ({route, navigation}) => {
     console.log('contacts ==>', contacts.length)
     return (
         <View style={styles.container}>
-            <Pressable
+            {/* <Pressable
                 onPress={() => navigation.navigate('interests', {
                     uniqueID: uniqueID,
                     phoneNumber: phoneNumber,
@@ -180,7 +180,7 @@ const InviteFriends = ({route, navigation}) => {
                 <Text style={styles.skipText}>
                     Skip
                 </Text>
-            </Pressable>
+            </Pressable> */}
             {spinner && <ActivityIndicator size="large" color="#0000ff" />}
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Invite Friends</Text>
@@ -241,7 +241,7 @@ const InviteFriends = ({route, navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        Done
+                        DONE
                     </Text>
                 </LinearGradient>
             </Pressable>

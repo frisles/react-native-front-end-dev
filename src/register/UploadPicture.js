@@ -24,13 +24,13 @@ const UploadPicture = ({route, navigation}) => {
     const [profileFileData,
         setProfileFileData] = useState('');
     const [profileFileUri,
-        setProfileFileUri] = useState('');
+        setProfileFileUri] = useState();
     const [coverFilepath,
         setCoverFilepath] = useState({data: '', uri: ''});
     const [coverFileData,
         setCoverFileData] = useState('');
     const [coverFileUri,
-        setCoverFileUri] = useState('');
+        setCoverFileUri] = useState();
     const [photo,
         setPhoto] = useState(null);
 
@@ -205,7 +205,7 @@ const UploadPicture = ({route, navigation}) => {
                         style={styles.buttonContainer}>
                         <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                             <Text style={styles.buttonText}>
-                                Continue
+                                CONTINUE
                             </Text>
                         </LinearGradient>
                     </Pressable>
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Inter',
-        fontSize: 22,
+        fontSize: 32,
         fontWeight: '600',
         color: '#2C2C2C',
         lineHeight: 28,
@@ -238,8 +238,8 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     imageContainer: {
-        width: 230,
-        height: 230,
+        width: 260,
+        height: 260,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 40

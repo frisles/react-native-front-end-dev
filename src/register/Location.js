@@ -83,13 +83,13 @@ const Location = ({route, navigation}) => {
     return (
 
         <View style={styles.container}>
-            <Pressable
+            {/* <Pressable
                 onPress={() => navigation.navigate('inviteFriends')}
                 style={styles.skipContainer}>
                 <Text style={styles.skipText}>
                     Skip
                 </Text>
-            </Pressable>
+            </Pressable> */}
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Enable Location</Text>
             </View>
@@ -117,7 +117,7 @@ const Location = ({route, navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        Continue
+                    CONTINUE
                     </Text>
                 </LinearGradient>
             </Pressable>

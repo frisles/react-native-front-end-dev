@@ -13,7 +13,7 @@ const VerifyAccount = ({route, navigation}) => {
     const [code, setCode] = useState("");
     const [getConfirmation, setGetConfirmation] = useState(getConfirm);
     const [resend, setResend] = useState(false);
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(30);
     const [showTimer, setShowRunTimer] = useState(true);
     const [runTimer, setRunTimer] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
@@ -60,22 +60,22 @@ const VerifyAccount = ({route, navigation}) => {
                 uniqueID: uniqueID
             });
         } catch (error) {
-            console.log('Invalid code.');
+            console.log('Invalid code.', error);
         }
         }
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Verify Account</Text>
-                <Text style={styles.subContent}>Enter 6-digit code we have sent to {number}</Text>
+                <Text style={styles.subContent}>Enter 6 digit verfication code sent to {number}</Text>
                 <View style={styles.OTPWrapper}>
                     <OTPInput 
                         maximumLength={6} 
                         onChange={onChangeText}
                     />
                 </View>
-                    {
-                        showTimer && 
+                    {/* {
+                        showTimer &&  */}
                         <View style={styles.timerWrapper}>
                             <CountDown
                                 size={10}
@@ -85,12 +85,12 @@ const VerifyAccount = ({route, navigation}) => {
                                 digitTxtStyle={{marginHorizontal: -10, color: '#FFF'}}
                                 timeLabelStyle={{marginHorizontal: -10, fontSize: 8, color: '#FFF', fontWeight: 'bold'}}
                                 separatorStyle={{marginHorizontal: -10, color: '#FFF'}}
-                                timeToShow={['H', 'M', 'S']}
+                                timeToShow={['S']}
                                 timeLabels={{m: null, s: null}}
                                 showSeparator
                             />
                         </View>
-                    }
+                    {/* } */}
                     {/* <Text style={styles.timerText}>02:22:01</Text> */}
                 <View style={styles.codeWrapper}>
                     <Text style={styles.subContent}>Didn’t not received the code?</Text>
@@ -111,7 +111,7 @@ const VerifyAccount = ({route, navigation}) => {
                 </LinearGradient>
             </Pressable>
             <Text style={styles.footerText}>
-                by clicking start, you agree to our&nbsp;
+                By clicking proceed, you agree to our&nbsp;
                 <Text
                     style={styles.footerLinkText}
                     onPress={() => navigation.navigate('agree')}>

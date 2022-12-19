@@ -104,7 +104,7 @@ const Details = ({route, navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        Continue
+                        CONTINUE
                     </Text>
                 </LinearGradient>
             </Pressable>
@@ -154,13 +154,14 @@ const styles = StyleSheet.create({
         color: '#3D5CFF'
     },
     selectContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         width: '80%',
-        marginVertical: 20
+        // marginVertical: 20
     },
     selectWrapper: {
-        width: '48%'
+        width: '100%',
+        marginBottom: 20
     },
     selectText: {
         fontFamily: 'Inter',

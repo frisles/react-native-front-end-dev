@@ -74,15 +74,16 @@ const Groups = ({navigation}) => {
   ]
     return(
 <View style={styles.container}>
-            <Pressable
+            {/* <Pressable
                 onPress={() => navigation.navigate('home')}
                 style={styles.skipContainer}>
                 <Text style={styles.skipText}>
                     Skip
                 </Text>
-            </Pressable>
+            </Pressable> */}
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Group Names</Text>
+                <Text style={styles.subContent}>Based on your interests & location we picked suitable groups for you to join</Text>
                 <View style={styles.searchContainer}>
                     <SearchComponent placeHolder={'Search Groups'} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase}/>
                 </View>
@@ -118,7 +119,7 @@ const Groups = ({navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        Done
+                        DONE
                     </Text>
                 </LinearGradient>
             </Pressable>
@@ -162,14 +163,23 @@ const styles = StyleSheet.create({
   },
   title: {
       fontFamily: 'Inter',
-      fontSize: 32,
-      fontWeight: '600',
+      fontSize: 34,
+      fontWeight: 'bold',
       color: '#2C2C2C',
       lineHeight: 40,
       textAlign: 'center',
       paddingTop: 20,
       paddingBottom: 20
   },
+  subContent: {
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#2C2C2C',
+    lineHeight: 24,
+    marginBottom: 20, 
+    textAlign: 'center'
+},
   subTitle: {
       fontFamily: 'Inter',
       fontSize: 16,

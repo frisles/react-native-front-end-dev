@@ -8,7 +8,7 @@ const Agree = ({route, navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <Text style={styles.title}>Hi Frisles</Text>
+                <Text style={styles.title}>Hi Frislesmate</Text>
 
             </View>
             <Image style={styles.imageContainer} source={require('../assets/images/list-1.png')}/>
@@ -20,7 +20,7 @@ const Agree = ({route, navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        I Agree
+                        I AGREE
                     </Text>
                 </LinearGradient>
             </Pressable>

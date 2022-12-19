@@ -98,13 +98,13 @@ const Interests = ({route, navigation}) => {
 
     return (
         <View style={styles.container}>
-          <Pressable
+          {/* <Pressable
                 onPress={() => navigation.navigate('groups')}
                 style={styles.skipContainer}>
                 <Text style={styles.skipText}>
                     Skip
                 </Text>
-            </Pressable>
+            </Pressable> */}
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Select 5 Interests</Text>
                 <View style={styles.filterContainer}>
@@ -139,7 +139,7 @@ const Interests = ({route, navigation}) => {
                 style={styles.buttonContainer}>
                 <LinearGradient style={styles.buttonWrapper} colors={['#5E6BFF', '#212FCC']}>
                     <Text style={styles.buttonText}>
-                        Continue
+                        CONTINUE
                     </Text>
                 </LinearGradient>
             </Pressable>
@@ -224,7 +224,7 @@ skipText: {
   listBox:{
     backgroundColor: '#F7F7F7',
     borderRadius: 25,
-    height: 50,
+    height: 46,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 18,
@@ -234,7 +234,7 @@ skipText: {
   },
   listText:{
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     color: '#000',
     lineHeight: 20,
